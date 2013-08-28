@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kp.model.voting.class">Kp\Bundle\VotingBundle\Entity\Voting</parameter>
+
+        <parameter key="kp.repository.voting.class">Kp\Bundle\VotingBundle\Repository\VotingRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="kp.manager.voting" alias="doctrine.orm.entity_manager" />
+        <service id="kp.repository.voting" class="%kp.repository.voting.class%">
+            <argument type="service" id="kp.manager.voting" />
+            <argument type="service">
+                <service
+                    factory-service="kp.manager.voting"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata"
+                >
+                    <argument>%kp.model.voting.class%</argument>
+                </service>
+            </argument>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+                                        http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+
+    <class name="Kp\Bundle\VotingBundle\Entity\Voting">
+        <property name="title">
+            <constraint name="NotBlank">
+                <option name="message">kp.voting.title.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">255</option>
+                <option name="minMessage">kp.voting.title.min_length</option>
+                <option name="maxMessage">kp.voting.title.max_length</option>
+            </constraint>
+        </property>
+        <property name="voting">
+            <constraint name="NotBlank">
+                <option name="message">kp.voting.voting.not_blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">2</option>
+                <option name="max">65536</option>
+                <option name="minMessage">kp.voting.voting.min_length</option>
+                <option name="maxMessage">kp.voting.voting.max_length</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>
